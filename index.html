@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title>Tik Tak Teo</title>
+    <style>
+        body{
+            background-color: silver;
+            font-family: monospace;
+            font-size: 1.3em ;
+        }
+        td{
+            border : 1px solid black ; 
+            height: 100px;
+	        width: 100px;
+            text-align: center;
+            color: #312244;
+            font-weight: bold;
+        }
+        #text, #btnc{ text-align: center ; }
+        #center{
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <div id='text'>
+        <h1> Welcome dear players ! </h1>
+
+        <p> Player 1 : X</p>
+        <p> Player 2 : 0</p>
+        <br/>
+        <p id='g'>~ Good Luck <b>^-^</b> ~</p> 
+    </div>
+    <br/><br/>
+        <table id="center">
+        <tr>
+            <td id='a11'> </td>
+            <td id='a12'> </td>
+            <td id='a13'> </td>
+        </tr>
+        <tr>
+            <td id='a21'> </td>
+            <td id='a22'> </td>
+            <td id='a23'> </td>
+        </tr>
+        <tr>
+            <td id='a31'> </td>
+            <td id='a32'> </td>
+            <td id='a33'> </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <div id='btnc'>
+    <button id='btn' onclick="restart()">Replay</button>
+    <p> ~ Project realized by : Meryem BENSAID. </p>
+    </div>
+    <script>
+        $(document).ready(()=>{
+        // ====== Player moves and turns : ======
+            turn = 0; 
+            $('td').click((e)=>{
+                if ( e.target.innerHTML == 'X' || e.target.innerHTML == 'O' )
+                {
+                    alert('Case not empty !!! '); 
+                }
+                else {
+                    if (turn%2 == 0)
+                    {
+                        e.target.innerHTML ="X";
+                        turn++; 
+                    }
+                    else
+                    {
+                        e.target.innerHTML ="O"; 
+                        turn++; 
+                    }
+                    win(); 
+                }
+            });
+        // ====== Checking who wins : =======
+        function win()
+        {
+            a11 = document.getElementById("a11").innerHTML;
+            a12 = document.getElementById("a12").innerHTML;
+            a13 = document.getElementById("a13").innerHTML;
+            a21 = document.getElementById("a21").innerHTML;
+            a22 = document.getElementById("a22").innerHTML;
+            a23 = document.getElementById("a23").innerHTML;
+            a31 = document.getElementById("a31").innerHTML;
+            a32 = document.getElementById("a32").innerHTML;
+            a33 = document.getElementById("a33").innerHTML;
+            if(a11=='X' && a12=='X' && a13=='X' || a21=='X' && a22== 'X' && a23=='X' 
+            || a31=='X' && a32=='X' && a33=='X'|| a11=='X' && a21=='X' && a31=='X' 
+            || a12=='X' && a22=='X' && a32=='X' || a13=='X' && a23=='X' && a33=='X' 
+            || a11=='X' && a22=='X' && a33=='X' || a13=='X' && a22=='X' && a31=='X'){
+                    alert('player 1 wins ! Press ok to replay. ');
+                    location.reload();
+                }
+            else if(a11=='O' && a12=='O' && a13=='O' || a21=='O' && a22== 'O' && a23=='O' 
+            || a31=='O' && a32=='O' && a33=='O' || a11=='O' && a21=='O' && a31=='O' 
+            || a12=='O' && a22=='O' && a32=='O' || a13=='O' && a23=='O' && a33=='O' 
+            || a11=='O' && a22=='O' && a33=='O' || a13=='O' && a22=='O' && a31=='O'){
+                    alert('player 2 wins ! Press ok to replay. '); 
+                    location.reload();
+                }
+            else if(turn == 9)
+            {
+                alert('No winner ! Press ok to replay. '); 
+                location.reload();
+            }
+        }
+        }); 
+        //====== Restart button : ======
+        function restart(){
+            location.reload();
+        }
+    </script>
+</body>
+</html>
